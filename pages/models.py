@@ -60,4 +60,18 @@ class Facts(models.Model):
     class Meta:
         verbose_name = "Fakt"
         verbose_name_plural = "Faktlar"
-    
+
+class Clients(models.Model):
+    name = models.CharField(max_length=100,verbose_name="Ad Soyad")
+    job = models.CharField(max_length=100,verbose_name="İş")
+    image = models.ImageField(upload_to = "client")
+    message =models.TextField(verbose_name="Şərh")
+    status = models.CharField(max_length=100,choices=STATUS)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Müştəri şərhi"
+        verbose_name_plural = "Müştəri şərhləri"
