@@ -1,0 +1,27 @@
+from pages.models import Coverimages, Facts, Teams
+from django.contrib import admin
+from django.utils.html import format_html
+
+# Register your models here.
+
+class CoverimagesAdmin(admin.ModelAdmin):
+    def icon(self,object):
+        return format_html("<img src = {} width = 100 style = 'border-radius : 10px;' />".format(object.image.url))
+
+    list_display = ["name","icon","status","created_date"]
+    list_editable = ["status"]
+    list_filter = ["created_date"]
+
+admin.site.register(Coverimages,CoverimagesAdmin)
+
+class TeamsAdmin(admin.ModelAdmin):
+    def icon_im(self,object):
+        return format_html("<img src = {} width = 40 style = 'border-radius : 50px; />".format(object.image.url))
+    
+    list_display = ["name","job","icon_im","created_date"]
+    list_filter = ["created_date"]
+    search_fields = ["name"]
+
+admin.site.register(Teams, TeamsAdmin)
+
+admin.site.register(Facts)
