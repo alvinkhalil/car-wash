@@ -1,6 +1,11 @@
-from django.shortcuts import render
-from pages.models import STATUS, About, Clients, Coverimages, Facts, Teams
+from reservation.admin import RezervmodelAdmin
+from django.shortcuts import redirect, render
+from pages.models import STATUS, About, Clients, Coverimages, Facts, Location, Teams
+from reservation.models import ReservationModel
+from django.contrib import messages
+
 # Create your views here.
+
 def index(request):
     cover_images = Coverimages.objects.filter(status = "active")
     teams = Teams.objects.all()
@@ -22,3 +27,32 @@ def about(request):
         "fact":fact,
     }
     return render(request, "pages/about.html",context)
+
+def services(request):
+    clients = Clients.objects.filter(status = "active")
+
+    context = {
+        "clients":clients,
+    }
+
+    return render(request,"pages/services.html",context)
+
+def washingpoints(request):
+    locations = Location.objects.filter(status = "active")
+
+    if request.method == "POST":
+        name = request.POST["name"]
+        phone = request.POST["phone"]
+        email = request.POST["email"]
+        message = request.POST["message"]
+
+        rezerv = ReservationModel(name = name, phone = phone, email = email, message = message)
+
+        rezerv.save()
+        messages.success(request,"Müraciətiniz üçün təşəkkürlər. Sizinlə əlaqə saxlanılacaq")
+        return redirect("pages:washingpoints")
+
+    context = {
+        "locations":locations,
+    }
+    return render(request,"pages/washingpoints.html",context)

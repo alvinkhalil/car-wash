@@ -88,3 +88,25 @@ class About(models.Model):
     class Meta:
         verbose_name = "Haqqımızda"
         verbose_name_plural = "Haqqımızda"
+
+class Location(models.Model):
+    title = models.CharField(max_length=100,verbose_name="Başlıq")
+    location = models.TextField(verbose_name="Ünvan")
+    phone = models.CharField(max_length=100,verbose_name="Telefon")
+    is_main = models.BooleanField(default=False,verbose_name="Əsas ünvan")
+    email = models.EmailField(blank=True)
+    status = models.CharField(choices=STATUS,max_length=100)
+    facebook = models.CharField(max_length=1000,blank=True)
+    twitter = models.CharField(max_length=1000,blank=True)
+    instagram = models.CharField(max_length=1000,blank=True)
+    youtube = models.CharField(max_length=1000,blank=True)
+    linkedin = models.CharField(max_length=1000,blank=True)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Ünvan"
+        verbose_name_plural = "Ünvanlar"

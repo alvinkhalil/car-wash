@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{% url 'pages:index' %}">
                             <h1>Auto<span>Wash</span></h1>
                             <!-- <img src="img/logo.jpg" alt="Logo"> -->
                         </a>
@@ -63,11 +63,52 @@
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="{% url 'pages:index' %}" class="nav-item nav-link active">Home</a>
-                        <a href="{% url 'pages:about' %}" class="nav-item nav-link">About</a>
-                        <a href="" class="nav-item nav-link">Service</a>
+                        <!--Index -->
+
+                        {% if 'index' in request.path or '/' == request.path %}
+                        <a href="{% url 'pages:index' %}" class="nav-item nav-link active">Əsas Səhifə</a>
+
+                        {% else %}
+                        <a href="{% url 'pages:index' %}" class="nav-item nav-link">Əsas Səhifə</a>
+
+                        {% endif %}
+                        
+                        <!--About -->
+                        {% if "about" in request.path %}
+                        <a href="{% url 'pages:about' %}" class="nav-item nav-link active">Haqqımızda</a>
+
+                        {% else %}
+                        <a href="{% url 'pages:about' %}" class="nav-item nav-link">Haqqımızda</a>
+
+                        {% endif %}
+
+                        <!--Service -->
+                        {% if "service" in request.path %}
+                        <a href="{% url 'pages:services' %}" class="nav-item nav-link active">Service</a>
+
+                        {% else %}
+                        <a href="{% url 'pages:services' %}" class="nav-item nav-link">Service</a>
+
+                        {% endif %}
+
+                        <!--Price -->
+                        {% if "price" in request.path %}
+                        <a href="" class="nav-item nav-link active">Price</a>
+
+                        {% else %}
                         <a href="" class="nav-item nav-link">Price</a>
-                        <a href="" class="nav-item nav-link">Washing Points</a>
+
+                        {% endif %}        
+
+                        <!--Washin Points -->
+                        {% if "washingpoints" in request.path %}
+                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link active">Washing</a>
+
+                        {% else %}
+                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link">Washing</a>
+
+                        {% endif %}       
+
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">

@@ -1,4 +1,4 @@
-from pages.models import About, Clients, Coverimages, Facts, Teams
+from pages.models import About, Clients, Coverimages, Facts, Location, Teams
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -42,3 +42,11 @@ class AboutAdmin(admin.ModelAdmin):
     list_display = ["title","created_date"]
 
 admin.site.register(About,AboutAdmin)
+
+class LocationAdmin(admin.ModelAdmin):
+    
+    list_display = ["id","title","status","is_main","created_date"]
+    list_display_links = ["title"]
+    list_editable = ["status","is_main"]
+
+admin.site.register(Location,LocationAdmin)

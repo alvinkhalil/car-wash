@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block body %}
+     
+        
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Məntəqələrimiz</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Əsas</a>
+                        <a href="">Ünvan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+        
+        <!-- Location Start -->
+        <div class="location">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="section-header text-left">
+                            <p>Məntəqələrimiz</p>
+                            <h2>Maşın yuma təmizləmə ünvanlarımız</h2>
+                        </div>
+                        <div class="row">
+                            {% for location in locations  %}
+                              
+                            <div class="col-md-6">
+                                <div class="location-item">
+                                    <i class="fa fa-map-marker-alt"></i>
+                                    <div class="location-text">
+                                        <h3>{{location.title}}</h3>
+                                        <p>{{location.location}}</p>
+                                        <p><strong>Zəng et:</strong>{{location.phone}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="location-form">
+                            <h3>Rezerve etmək</h3>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="control-group">
+                                    <input type="text" class="form-control" placeholder="Ad" name="name" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <input type="text" class="form-control" placeholder="Nömrə" name="phone" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <textarea class="form-control" placeholder="Əlavə mesaj" name="message" required="required"></textarea>
+                                </div>
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Göndər</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Location End -->
+{% endblock body %}
