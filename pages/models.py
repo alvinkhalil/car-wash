@@ -75,3 +75,16 @@ class Clients(models.Model):
     class Meta:
         verbose_name = "Müştəri şərhi"
         verbose_name_plural = "Müştəri şərhləri"
+
+class About(models.Model):
+    title = models.CharField(max_length=100,verbose_name="Başlıq")
+    image = models.ImageField(upload_to = "about")
+    text = models.TextField(verbose_name="Mətin")
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Haqqımızda"
+        verbose_name_plural = "Haqqımızda"

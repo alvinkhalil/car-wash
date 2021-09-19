@@ -35,25 +35,20 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="about-img">
-                            <img src="{% static 'img/about.jpg' %}" alt="Image">
+                            <img src="{{about.image.url}}" alt="Image">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="section-header text-left">
-                            <p>About Us</p>
-                            <h2>car washing and detailing</h2>
+                            <p>Haqqımızda</p>
+                            <h2>{{about.title}}</h2>
                         </div>
                         <div class="about-content">
                             <p>
-                                Lorem ipsum dolor sit amet elit. In vitae turpis. Donec in hendre dui, vel blandit massa. Ut vestibu suscipi cursus. Cras quis porta nulla, ut placerat risus. Aliquam nec magna eget velit luctus dictum
+                                {{about.text|truncatewords:50}}
                             </p>
-                            <ul>
-                                <li><i class="far fa-check-circle"></i>Seats washing</li>
-                                <li><i class="far fa-check-circle"></i>Vacuum cleaning</li>
-                                <li><i class="far fa-check-circle"></i>Interior wet cleaning</li>
-                                <li><i class="far fa-check-circle"></i>Window wiping</li>
-                            </ul>
-                            <a class="btn btn-custom" href="">Learn More</a>
+
+                            <a class="btn btn-custom" href="">Daha çox</a>
                         </div>
                     </div>
                 </div>
@@ -66,8 +61,8 @@
         <div class="service">
             <div class="container">
                 <div class="section-header text-center">
-                    <p>What We Do?</p>
-                    <h2>Premium Washing Services</h2>
+                    <p>Biz nə edirik?</p>
+                    <h2>Yüksək keyfiyyətli maşın yuma xidməti</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -180,8 +175,8 @@
         <div class="team">
             <div class="container">
                 <div class="section-header text-center">
-                    <p>Meet Our Team</p>
-                    <h2>Our Engineers & Workers</h2>
+                    <p>Komandamız ilə tanışlıq</p>
+                    <h2>Mühəndis və işçilərimiz</h2>
                 </div>
                 <div class="row">
                     {% for team in teams  %}
@@ -215,8 +210,8 @@
         <div class="testimonial">
             <div class="container">
                 <div class="section-header text-center">
-                    <p>Testimonial</p>
-                    <h2>What our clients say</h2>
+                    <p>Rəylər</p>
+                    <h2>Müştərilərimiz nə deyir?</h2>
                 </div>
                 <div class="owl-carousel testimonials-carousel">
                     {% for client in clients  %}
@@ -243,8 +238,8 @@
         <div class="blog">
             <div class="container">
                 <div class="section-header text-center">
-                    <p>Our Blog</p>
-                    <h2>Latest news & articles</h2>
+                    <p>Bizim bloq</p>
+                    <h2>Son xəbər və məqalələr</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+   <!-- Page Header Start -->
+   <div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Haqqımızda</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'pages:index' %}">Əsas</a>
+                <a>Haqqımızda</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+        <!-- About Start -->
+        <div class="about">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{about.image.url}}" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="section-header text-left">
+                            <p>Haqqımızda</p>
+                            <h2>{{about.title}}</h2>
+                        </div>
+                        <div class="about-content">
+                            <p>
+                                {{about.text}}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+<!-- Facts Start -->
+<div class="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">{{fact.servicepoints}}</h3>
+                        <p>Servis sayımız</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-user"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">{{fact.workers}}</h3>
+                        <p>Mühəndis & İşçilərimiz</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-users"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">{{fact.clients}}</h3>
+                        <p>Müştəri məmuniyyəti</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="fa fa-check"></i>
+                    <div class="facts-text">
+                        <h3 data-toggle="counter-up">{{fact.projectsompleted}}</h3>
+                        <p>Tamamlanmış işlər</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+
+  
+        <!-- Team Start -->
+        <div class="team">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Komandamız ilə tanışlıq</p>
+                    <h2>Mühəndis və işçilərimiz</h2>
+                </div>
+                <div class="row">
+                    {% for team in teams  %}
+                      
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{team.image.url}}" alt="Team Image">
+                            </div>
+                            <div class="team-text">
+                                <h2>{{team.name}}</h2>
+                                <p>{{team.job}}</p>
+                                <div class="team-social">
+                                    <a href="{{team.facebook}}"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{team.instagram}}"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="{team.twitter}}"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="{{team.linkedin}}"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+        
+{% endblock body %}

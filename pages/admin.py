@@ -1,4 +1,4 @@
-from pages.models import Clients, Coverimages, Facts, Teams
+from pages.models import About, Clients, Coverimages, Facts, Teams
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -36,3 +36,9 @@ class ClientsAdmin(admin.ModelAdmin):
     search_fields = ["name"]
 
 admin.site.register(Clients,ClientsAdmin)
+
+class AboutAdmin(admin.ModelAdmin):
+
+    list_display = ["title","created_date"]
+
+admin.site.register(About,AboutAdmin)
