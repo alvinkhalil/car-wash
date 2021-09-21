@@ -110,3 +110,29 @@ class Location(models.Model):
     class Meta:
         verbose_name = "Ünvan"
         verbose_name_plural = "Ünvanlar"
+
+class Price(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Başlıq")
+    price = models.FloatField(verbose_name="Qiymət")
+    pr1 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr2 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr3 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr4 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr5 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr6 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr7 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr8 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr9 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+    pr10 = models.CharField(verbose_name="Paketə daxildir",blank=True,max_length=100)
+
+
+    status = models.CharField(choices=STATUS,max_length=100)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+
+        return self.title
+    
+    class Meta:
+        verbose_name = "Qiymət Paketlər"
+        verbose_name_plural = "Qiymət Paketlər"

@@ -1,6 +1,7 @@
+from reservation.forms import PriceForm
 from reservation.admin import RezervmodelAdmin
 from django.shortcuts import redirect, render
-from pages.models import STATUS, About, Clients, Coverimages, Facts, Location, Teams
+from pages.models import STATUS, About, Clients, Coverimages, Facts, Location, Price, Teams
 from reservation.models import ReservationModel
 from django.contrib import messages
 
@@ -39,20 +40,24 @@ def services(request):
 
 def washingpoints(request):
     locations = Location.objects.filter(status = "active")
-
-    if request.method == "POST":
-        name = request.POST["name"]
-        phone = request.POST["phone"]
-        email = request.POST["email"]
-        message = request.POST["message"]
-
-        rezerv = ReservationModel(name = name, phone = phone, email = email, message = message)
-
-        rezerv.save()
+    
+    form = PriceForm(request.POST or None)
+    if form.is_valid():
+        form.save()
         messages.success(request,"Müraciətiniz üçün təşəkkürlər. Sizinlə əlaqə saxlanılacaq")
-        return redirect("pages:washingpoints")
+
+
 
     context = {
         "locations":locations,
+        'form':form,
     }
     return render(request,"pages/washingpoints.html",context)
+
+def price(request):
+    prices = Price.objects.filter(status = "active")
+
+    context = {
+        "prices":prices,
+    }
+    return render(request, "pages/price.html",context)

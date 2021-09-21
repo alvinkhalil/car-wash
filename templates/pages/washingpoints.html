@@ -51,16 +51,19 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <div class="control-group">
-                                    <input type="text" class="form-control" placeholder="Ad" name="name" required="required" />
+                                    {{form.name}}
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" placeholder="Nömrə" name="phone" required="required" />
+                                    {{form.phone}}
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control" placeholder="Email" name="email" required="required" />
+                                    {{form.email}}
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="form-control" placeholder="Əlavə mesaj" name="message" required="required"></textarea>
+                                    {{form.plan}}
+                                </div>
+                                <div class="control-group">
+                                    {{form.message}}
                                 </div>
                                 <div>
                                     <button class="btn btn-custom" type="submit">Göndər</button>

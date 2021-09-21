@@ -1,4 +1,4 @@
-from pages.models import About, Clients, Coverimages, Facts, Location, Teams
+from pages.models import About, Clients, Coverimages, Facts, Location, Price, Teams
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -50,3 +50,6 @@ class LocationAdmin(admin.ModelAdmin):
     list_editable = ["status","is_main"]
 
 admin.site.register(Location,LocationAdmin)
+
+
+admin.site.register(Price)

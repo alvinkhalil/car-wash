@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block body %}
+   
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Yuma tariflərimiz</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="{% url 'pages:index' %}">Əsas</a>
+                        <a href="">Qiymət</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+        
+        <!-- Price Start -->
+        <div class="price">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Tariflər</p>
+                    <h2>Sizə uyğun olan paketi seçin</h2>
+                </div>
+                <div class="row">
+                    {% for price in prices  %}
+                      
+                    <div class="col-md-4">
+                        <div class="price-item featured-item">
+                            <div class="price-header">
+                                <h3>{{price.title}}</h3>
+                                <h2><strong>{{price.price}}</strong><span>AZN</span></h2>
+                            </div>
+                            <div class="price-body">
+                                <ul>
+                                    <li><i class="far fa-check-circle"></i>{{price.pr1}}</li>
+                                    <li><i class="far fa-check-circle"></i>{{price.pr2}}</li>
+                                    {% if price.pr3 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr3}}</li>
+
+                                    {% endif %}
+                                    {% if price.pr4 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr4}}</li>
+                            
+                                    {% endif %}
+                                    {% if price.pr5 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr5}}</li>
+
+                                    {% endif %}
+                                    {% if price.pr6 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr6}}</li>
+                                      
+                                    {% endif %}
+                                    {% if price.pr7 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr7}}</li>
+
+                                    {% endif %}
+                                    {% if price.pr8 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr8}}</li>
+
+                                    {% endif %}
+                                    {% if price.pr9 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr9}}</li>
+
+                                    {% endif %}
+                                    {% if price.pr10 %}
+                                    <li><i class="far fa-check-circle"></i>{{price.pr10}}</li>
+
+                                    {% endif %}
+
+
+                                </ul>
+                            </div>
+                            <div class="price-footer">
+                                <a class="btn btn-custom" href="{% url 'pages:washingpoints' %}">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <!-- Price End -->
+        
+{% endblock body %}
