@@ -5,7 +5,7 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
                         <a href="{% url 'pages:index' %}">
-                            <h1>Auto<span>Wash</span></h1>
+                            <h1>Avto<span>Yuma</span></h1>
                             <!-- <img src="img/logo.jpg" alt="Logo"> -->
                         </a>
                     </div>
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>İş vaxtımız</h3>
-                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                    <p>{{settings.open_hour}}</p>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Bizə zəng et</h3>
-                                    <p>+012 345 6789</p>
+                                    <p>{{settings.phone}}</p>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Elektron poçt</h3>
-                                    <p>info@example.com</p>
+                                    <p>{{settings.email}}</p>
                                 </div>
                             </div>
                         </div>
@@ -93,19 +93,19 @@
 
                         <!--Price -->
                         {% if "price" in request.path %}
-                        <a href="" class="nav-item nav-link active">Price</a>
+                        <a href="{% url 'pages:price' %}" class="nav-item nav-link active">Qiymətlər</a>
 
                         {% else %}
-                        <a href="" class="nav-item nav-link">Price</a>
+                        <a href="{% url 'pages:price' %}" class="nav-item nav-link">Qiymətlər</a>
 
                         {% endif %}        
 
                         <!--Washin Points -->
                         {% if "washingpoints" in request.path %}
-                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link active">Washing</a>
+                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link active">Ünvanlarımız</a>
 
                         {% else %}
-                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link">Washing</a>
+                        <a href="{% url 'pages:washingpoints' %}" class="nav-item nav-link">Ünvanlarımız</a>
 
                         {% endif %}       
 
@@ -115,10 +115,18 @@
                                 <a href="blog.html" class="dropdown-item">Blog Grid</a>
                                 <a href="single.html" class="dropdown-item">Detail Page</a>
                                 <a href="team.html" class="dropdown-item">Team Member</a>
-                                <a href="booking.html" class="dropdown-item">Schedule Booking</a>
+
+                                <a href="{% url 'pages:washingpoints' %}" class="dropdown-item">Rezerv</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        {% if 'contact' in request.path %}
+                        <a href="{% url 'pages:contact' %}" class="nav-item nav-link active">Əlaqə</a>
+
+                        {% else %}
+                        <a href="{% url 'pages:contact' %}" class="nav-item nav-link">Əlaqə</a>
+
+                        {% endif %}
+                        
                     </div>
                     <div class="ml-auto">
                         <a class="btn btn-custom" href="#">Get Appointment</a>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block body %}
+    <!-- Page Header Start -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Bloq list</h2>
+                </div>
+                <div class="col-12">
+                    <a href="{% url 'pages:index' %}">Əsas</a>
+                    <a href="">Bloq</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+    
+    
+    <!-- Blog Start -->
+    <div class="blog">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Bizim bloq</p>
+                <h2>Latest news & articles</h2>
+            </div>
+            <div class="row">
+                {% for blog in blogs  %}
+                  
+                <div class="col-lg-4">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="{{blog.image.url}}" alt="Image">
+                            <div class="meta-date">
+                                <span>{{blog.created_date}}</span>
+             
+                            </div>
+                        </div>
+                        <div class="blog-text">
+                            <h3><a href="#">{{blog.title}}</a></h3>
+                            <p>
+                                {{blog.text|truncatewords:10}}
+                            </p>
+                        </div>
+                        <div class="blog-meta">
+                            <p><i class="fa fa-user"></i><a>Admin</a></p>
+                            <p><i class="fa fa-folder"></i><a href="">{{blog.category}}</a></p>
+                            <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+{% endblock body %}

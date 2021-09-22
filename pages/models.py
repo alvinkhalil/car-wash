@@ -95,6 +95,7 @@ class Location(models.Model):
     phone = models.CharField(max_length=100,verbose_name="Telefon")
     is_main = models.BooleanField(default=False,verbose_name="Əsas ünvan")
     email = models.EmailField(blank=True)
+    open_hour = models.CharField(max_length=100, verbose_name="İş saatı:",blank=True)
     status = models.CharField(choices=STATUS,max_length=100)
     facebook = models.CharField(max_length=1000,blank=True)
     twitter = models.CharField(max_length=1000,blank=True)
@@ -108,8 +109,8 @@ class Location(models.Model):
         return self.title
     
     class Meta:
-        verbose_name = "Ünvan"
-        verbose_name_plural = "Ünvanlar"
+        verbose_name = "Ünvan və parametr"
+        verbose_name_plural = "Ünvan və parametrlər"
 
 class Price(models.Model):
     title = models.CharField(max_length=100, verbose_name="Başlıq")
