@@ -1,10 +1,13 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from pages.models import STATUS
+from taggit.managers import TaggableManager
+
 # Create your models here.
 
 class CategoryModel(models.Model):
     name = models.CharField(max_length=100,verbose_name="Kateqoriya adı")
+    slug = models.SlugField()
     created_date = models.DateTimeField(auto_now_add=True,verbose_name="Yaradıldığı tarix")
 
     def __str__(self):
@@ -20,6 +23,8 @@ class BlogModel(models.Model):
     image = models.ImageField(upload_to = "blogphotos",verbose_name="Şəkil")
     text = models.TextField(verbose_name="Mətin")
     status = models.CharField(max_length=100, choices=STATUS)
+    slug = models.SlugField()
+    tags = TaggableManager(verbose_name="Taqlar")
     created_date = models.DateTimeField(auto_now_add=True,verbose_name="Yaradılma tarixi")
 
     def __str__(self):
@@ -29,3 +34,4 @@ class BlogModel(models.Model):
     class Meta:
         verbose_name = "Bloq"
         verbose_name_plural = "Bloqlar"
+

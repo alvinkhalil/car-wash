@@ -6,6 +6,8 @@ from django.utils.html import format_html
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["name","created_date"]
+    prepopulated_fields = {'slug': ('name',), }
+
 
 admin.site.register(CategoryModel,CategoryAdmin)
 
@@ -18,5 +20,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_filter = ["created_date","status"]
     list_editable = ["status"]
     search_fields = ["title","text"]
+    prepopulated_fields = {'slug': ('title',), }
+
 
 admin.site.register(BlogModel,BlogAdmin)
