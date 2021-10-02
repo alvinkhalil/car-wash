@@ -8,6 +8,7 @@ urlpatterns = [
     path('category/<slug:cat_slug>/<slug:post_slug>',views.postdetail, name="postdetail"),
     path('category/<slug:cat_slug>/',views.catposts,name = "catposts"),
     path('tags=<slug:tag>/',views.tags,name = "tagposts"),
-    path('search',views.search,name="search")
+    path('search',views.search,name="search"),
+    path('like/<int:id>',views.likes, name="likes")
 
 ]

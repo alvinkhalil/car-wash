@@ -32,8 +32,8 @@ class BlogModel(models.Model):
         return self.title
     
     class Meta:
-        verbose_name = "Bloq"
-        verbose_name_plural = "Bloqlar"
+        verbose_name = "Məqalə"
+        verbose_name_plural = "Məqalələr"
 
 class Comments(models.Model):
     name = models.CharField(max_length=100,verbose_name="Ad")
@@ -62,3 +62,10 @@ class ReplyComments(models.Model):
     class Meta:
         verbose_name = "Şərh cavabı"
         verbose_name_plural = "Şərh cavabları"
+
+class BlogLikes(models.Model):
+    post = models.ForeignKey(BlogModel,on_delete=CASCADE)
+    like = models.PositiveIntegerField(default=0)
+    created_date  = models.DateTimeField(auto_now_add=True)
+
+    

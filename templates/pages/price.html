@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+  Qiymətlər
+{% endblock title %}
 {% block body %}
    
         <!-- Page Header Start -->
@@ -28,7 +31,7 @@
                 <div class="row">
                     {% for price in prices  %}
                       
-                    <div class="col-md-4">
+                    <div class="col-md-4" widht = "100">
                         <div class="price-item featured-item">
                             <div class="price-header">
                                 <h3>{{price.title}}</h3>

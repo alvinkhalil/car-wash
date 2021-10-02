@@ -1,5 +1,6 @@
 from django.db.models.fields import SlugField
-from blog.models import BlogModel, CategoryModel, Comments, ReplyComments
+from django.http.response import HttpResponseRedirect
+from blog.models import BlogModel, CategoryModel, Comments, ReplyComments,BlogLikes
 from django.shortcuts import get_object_or_404, redirect, render
 from taggit.models import Tag
 from django.contrib import messages
@@ -8,6 +9,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 def list(request):
     blogs = BlogModel.objects.filter(status = "active")
+
     paginator = Paginator(blogs, 6)
 
     page_number = request.GET.get('page')
@@ -22,11 +24,18 @@ def list(request):
 def postdetail(request,cat_slug, post_slug):
     categories = CategoryModel.objects.all()
     recentpost = BlogModel.objects.order_by("-created_date").filter(status = "active")[:5]
+    likedpost = BlogLikes.objects.order_by("-like").all()[:5]
     category = CategoryModel.objects.get(slug = cat_slug)
     post = BlogModel.objects.get(category = category, slug = post_slug)
     tags = Tag.objects.all()
     comments= Comments.objects.filter(post = post)
     reply = ReplyComments.objects.filter()
+
+    try:
+        likes =BlogLikes.objects.get(post = post)
+    except:
+        likes = 0
+
     if request.method == "POST":
         name = request.POST["name"]
         email = request.POST["email"]
@@ -43,6 +52,8 @@ def postdetail(request,cat_slug, post_slug):
         "tags":tags,
         "comments":comments,
         "reply":reply,
+        "likes":likes,
+        "likedpost":likedpost,
 
     }
     return render(request,"blog/blogdetail.html",context)
@@ -89,4 +100,15 @@ def search(request):
 
         return render(request, "blog/bloggrid.html",context)
 
-    
+def likes(request,id):
+    post = BlogModel.objects.get(id = id)
+    try:
+        like = BlogLikes.objects.get(post = post)
+
+        like.like += 1
+        like.save()
+    except:
+        newLike = BlogLikes.objects.create(post = post, like = 1)
+        newLike.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

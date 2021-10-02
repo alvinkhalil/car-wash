@@ -1,5 +1,5 @@
 from blog.views import search
-from blog.models import BlogModel, CategoryModel, Comments, ReplyComments
+from blog.models import BlogLikes, BlogModel, CategoryModel, Comments, ReplyComments
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -39,3 +39,4 @@ class ReplyAdmin(admin.ModelAdmin):
     list_filter = ["created_date"]
 
 admin.site.register(ReplyComments, ReplyAdmin)
+admin.site.register(BlogLikes)

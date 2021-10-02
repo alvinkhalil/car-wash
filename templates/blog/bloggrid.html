@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+  Bloq
+{% endblock title %}
 {% block body %}
     <!-- Page Header Start -->
     <div class="page-header">
@@ -47,7 +50,12 @@
                         <div class="blog-meta">
                             <p><i class="fa fa-user"></i><a>Admin</a></p>
                             <p><i class="fa fa-folder"></i><a href="{% url 'blog:catposts' blog.category.slug %}">{{blog.category}}</a></p>
-                            <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
+                            {% if comments %}
+                              
+                            <p><i class="fa fa-comments"></i><a href="">Rəy</a></p>
+                            {% endif %}                              
+
+
                         </div>
                     </div>
                 </div>

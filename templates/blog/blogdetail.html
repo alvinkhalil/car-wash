@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load  static %}
+{% block title %}
+  Məqalə haqqında
+{% endblock title %}
 {% block body %}
       
         <!-- Page Header Start -->
@@ -26,12 +29,24 @@
                 <div class="single-content">
                     <img src="{{post.image.url}}" />
                       
-                    <h2>{{post.title}}</h2>
+                    <h2>{{post.title}} </h2> 
 
                     <p>
                         {{post.text}}
                     </p>
-                    <h5>{{post.created_date}}</h5>
+                    <h5>{{post.created_date}}</h5> 
+                    <form action="{% url 'blog:likes' post.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-primary">Bəyən</button> <span>Bəyənmə sayı: 
+                        {% if likes %}
+                        {{likes.like}}
+                        {% else %}
+                          0
+                        {% endif %}
+                        
+                        
+                    </span>
+                    </form>
                 </div>
 
                 <div class="single-tags">
@@ -41,19 +56,19 @@
                     {% endfor %} -->
                 </div>
                 <div class="single-related">
-                    <h2>Related Post</h2>
+                    <h2>Ən çox bəyənilənlər</h2>
                     <div class="owl-carousel related-slider">
-                        {% for post in recentpost  %}
+                        {% for postt in likedpost  %}
                           
                         <div class="post-item">
                             <div class="post-img">
-                                <img src="{{post.image.url}}" />
+                                <img src="{{postt.post.image.url}}" />
                             </div>
                             <div class="post-text">
-                                <a href="{% url 'blog:postdetail' post.category.slug post.slug %}">{{post.title}}</a>
+                                <a href="{% url 'blog:postdetail' postt.post.category.slug postt.post.slug %}">{{postt.post.title}}</a>
                                 <div class="post-meta">
                                     <p><a href="">Admin</a></p>
-                                    <p>Kateqoriya<a href="">{{post.category}}</a></p>
+                                    <p>Kateqoriya<a href="">{{postt.post.category}}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -80,11 +95,10 @@
                                     </p>
                                     <a class="btn" href="">Cavab</a>
                                 </div>
-                            </div>
+                            </div><hr>
                             {% if reply %}
                             {% for rep in reply  %}
                             {% if rep.comment == comment %}
-                              
                             <ul class="comment-child">
                                 <li class="comment-item">
                                     <div class="comment-body">
@@ -109,9 +123,10 @@
 
                         </li>
                         {% endfor %}
-                        <hr>
+                        
                     </ul>
                 </div>
+                
                 <div class="comment-form">
                     <h2>Şərh yaz</h2>
                     <form method="POST">
@@ -142,7 +157,7 @@
                         <div class="search-widget">
                             <form action="{% url 'blog:search' %}" method="GET">
                                 {% csrf_token %}
-                                <input class="form-control" type="text" placeholder="Search Keyword" name = "keyword">
+                                <input class="form-control" type="text" placeholder="Axtar..." name = "keyword">
                                 <button class="btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -151,17 +166,17 @@
                     <div class="sidebar-widget">
                         <h2 class="widget-title">Son məqalələr</h2>
                         <div class="recent-post">
-                            {% for post in recentpost  %}
+                        {% for post in recentpost  %}
 
                             <div class="post-item">
                                 <div class="post-img">
                                     <img src="{{post.image.url}}" />
                                 </div>
                                 <div class="post-text">
-                                    <a href="">{{post.title}}</a>
+                                    <a href="{% url 'blog:postdetail' post.category.slug post.slug %}">{{post.title}}</a>
                                     <div class="post-meta">
                                         <p><a href="">Admin</a></p>
-                                        <p><a href="{% url 'blog:postdetail' post.category.slug post.slug %}">{{post.category}}</a></p>
+                                        <p><a href="{% url 'blog:catposts' post.category.slug  %}">{{post.category}}</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -169,217 +184,6 @@
                         </div>
                     </div>
 
-
-                    <div class="sidebar-widget">
-                        <div class="tab-post">
-                            <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#featured">Featured</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#popular">Popular</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#latest">Latest</a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div id="featured" class="container tab-pane active">
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-1.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-2.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-3.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-4.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-5.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="popular" class="container tab-pane fade">
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-1.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-2.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-3.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-4.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-5.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="latest" class="container tab-pane fade">
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-1.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-2.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-3.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-4.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-item">
-                                        <div class="post-img">
-                                            <img src="img/post-5.jpg" />
-                                        </div>
-                                        <div class="post-text">
-                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                            <div class="post-meta">
-                                                <p>By<a href="">Admin</a></p>
-                                                <p>In<a href="">Web Design</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-widget">
-                        <div class="image-widget">
-                            <a href="#"><img src="img/blog-2.jpg" alt="Image"></a>
-                        </div>
-                    </div>
 
                     <div class="sidebar-widget">
                         <h2 class="widget-title">Kateqoriyalar</h2>
@@ -394,11 +198,6 @@
                         </div>
                     </div>
 
-                    <div class="sidebar-widget">
-                        <div class="image-widget">
-                            <a href="#"><img src="img/blog-3.jpg" alt="Image"></a>
-                        </div>
-                    </div>
 
                     <div class="sidebar-widget">
                         <h2 class="widget-title">Həştəqlər</h2>
