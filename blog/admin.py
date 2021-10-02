@@ -1,4 +1,5 @@
-from blog.models import BlogModel, CategoryModel
+from blog.views import search
+from blog.models import BlogModel, CategoryModel, Comments, ReplyComments
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -24,3 +25,17 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(BlogModel,BlogAdmin)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ["name","email","post","created_date"]
+    search_fields = ["name","message"]
+    list_filter = ["created_date"]
+
+admin.site.register(Comments, CommentAdmin)
+
+class ReplyAdmin(admin.ModelAdmin):
+    list_display = ["name","email","created_date"]
+    search_fields = ["name","message"]
+    list_filter = ["created_date"]
+
+admin.site.register(ReplyComments, ReplyAdmin)

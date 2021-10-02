@@ -61,3 +61,11 @@ def price(request):
         "prices":prices,
     }
     return render(request, "pages/price.html",context)
+
+def teammate(request):
+    teams = Teams.objects.all()
+
+    context = {
+        "teams":teams,
+    }
+    return render(request,"pages/teammate.html",context)

@@ -35,3 +35,30 @@ class BlogModel(models.Model):
         verbose_name = "Bloq"
         verbose_name_plural = "Bloqlar"
 
+class Comments(models.Model):
+    name = models.CharField(max_length=100,verbose_name="Ad")
+    email = models.CharField(max_length=100,verbose_name="Elektron poçt")
+    message = models.TextField(verbose_name="Mesaj")
+    post = models.ForeignKey(BlogModel,on_delete=CASCADE,verbose_name='Məqalə')
+    created_date = models.DateTimeField(auto_now_add=True,verbose_name="Göndərilyi tarix")
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Şərh"
+        verbose_name_plural = "Şərhlər"
+
+class ReplyComments(models.Model):
+    name = models.CharField(max_length=100,verbose_name="Ad")
+    email = models.CharField(max_length=100,verbose_name="Elektron poçt")
+    message = models.TextField(verbose_name="Mesaj")
+    comment = models.ForeignKey(Comments,on_delete=CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True,verbose_name="Göndərilyi tarix")
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Şərh cavabı"
+        verbose_name_plural = "Şərh cavabları"

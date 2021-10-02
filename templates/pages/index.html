@@ -18,7 +18,7 @@
                             <p>
                                 {{image.description}}
                             </p>
-                            <a class="btn btn-custom" href="">Daha çox</a>
+                            <a class="btn btn-custom" href="{% url 'pages:about' %}">Daha çox</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -48,7 +48,7 @@
                                 {{about.text|truncatewords:50}}
                             </p>
 
-                            <a class="btn btn-custom" href="">Daha çox</a>
+                            <a class="btn btn-custom" href="{% url 'pages:about' %}">Daha çox</a>
                         </div>
                     </div>
                 </div>

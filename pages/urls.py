@@ -11,7 +11,8 @@ urlpatterns = [
     path('services/',views.services,name = "services"),
     path('washingpoints/',views.washingpoints,name = 'washingpoints'),
     path('price/',views.price,name = 'price'),
-    path('contact/',contact,name="contact")
+    path('contact/',contact,name="contact"),
+    path('teammates/',views.teammate, name="teammates"),
 
 
 ]

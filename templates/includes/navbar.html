@@ -84,10 +84,10 @@
 
                         <!--Service -->
                         {% if "service" in request.path %}
-                        <a href="{% url 'pages:services' %}" class="nav-item nav-link active">Service</a>
+                        <a href="{% url 'pages:services' %}" class="nav-item nav-link active">Servis</a>
 
                         {% else %}
-                        <a href="{% url 'pages:services' %}" class="nav-item nav-link">Service</a>
+                        <a href="{% url 'pages:services' %}" class="nav-item nav-link">Servis</a>
 
                         {% endif %}
 
@@ -110,11 +110,10 @@
                         {% endif %}       
 
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Başqa</a>
                             <div class="dropdown-menu">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Detail Page</a>
-                                <a href="team.html" class="dropdown-item">Team Member</a>
+                                <a href="{% url 'blog:list' %}" class="dropdown-item">Bloq </a>
+                                <a href="{% url 'pages:teammates' %}" class="dropdown-item">Komandamız</a>
 
                                 <a href="{% url 'pages:washingpoints' %}" class="dropdown-item">Rezerv</a>
                             </div>
