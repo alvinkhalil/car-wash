@@ -18,3 +18,6 @@ This site for Car Wash.
 * Bəyənmək funksiyası
 * Rəy yazmaq
 * Paginator
+#### Login
+* Username: admin
+* Password: admin
